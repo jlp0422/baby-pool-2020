@@ -7,9 +7,9 @@ type Entry {
   firstName: String!
   lastName: String!
   email: String!
-  date: String! # need to figure this out
+  date: String!
   gender: Gender!
-  weight: String! # send in as total oz
+  weight: String! # total OZ
 }
 
 type Query {

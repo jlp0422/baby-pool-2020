@@ -1,12 +1,11 @@
-import React from 'react'
-import { useReducer } from 'react'
-
-const STATUSES = {
-  IDLE: 'IDLE',
-  PENDING: 'PENDING',
-  SUCCESS: 'SUCCESS',
-  ERROR: 'ERROR'
-}
+import axios from 'axios'
+import React, { useReducer } from 'react'
+import {
+  calculateWeight,
+  formatField,
+  STATUSES,
+  isStatusSuccess
+} from '../../utils'
 
 const INITIAL_STATE = {
   firstName: '',
@@ -19,17 +18,6 @@ const INITIAL_STATE = {
   errors: []
 }
 
-const OZ_PER_LB = 16
-
-const calculateWeight = oz => {
-  const pounds = Math.floor(oz / OZ_PER_LB)
-  const ounces = oz % OZ_PER_LB
-  return `${pounds} pounds, ${ounces} ounces`
-}
-
-const formatField = field =>
-  field.replace(/[A-Z]/, ' $&').replace(/^\w{1}/, match => match.toUpperCase())
-
 const reducer = (state, action) => {
   switch (action.type) {
     case 'UPDATE_FIELD_VALUE':
@@ -40,6 +28,8 @@ const reducer = (state, action) => {
       return { ...state, errors: [...state.errors, action.error] }
     case 'RESET_ERRORS':
       return { ...state, errors: [] }
+    case 'SUCCESSFUL_SUBMISSION':
+      return { ...state, status: STATUSES.SUCCESS }
     default:
       return state
   }
@@ -67,13 +57,38 @@ const CreateEntry = () => {
           field,
           value: formatField(field)
         })
+        return
       }
     }
-    setStatus(STATUSES.PENDING)
-    setTimeout(() => {
-      setStatus(STATUSES.SUCCESS)
-    }, 1000)
+    createEntryInDatabase()
   }
+
+  const createEntryInDatabase = async () => {
+    setStatus(STATUSES.PENDING)
+    await axios
+      .post('/api/createEntry', state)
+      .then(response => {
+        console.log('*** response', response)
+        if (response.status === 200) {
+          setStatus(STATUSES.SUCCESS)
+          dispatch({ type: 'SUCCESSFUL_SUBMISSION' })
+        }
+      })
+      .catch(console.error)
+  }
+
+  const createFormField = ({ label, name, type = 'text', options = {} }) => (
+    <label>
+      {label}
+      <input
+        type={type}
+        name={name}
+        value={state[name]}
+        {...options}
+        onChange={updateFieldValue(name)}
+      />
+    </label>
+  )
 
   return (
     <div>
@@ -84,61 +99,62 @@ const CreateEntry = () => {
           Please fill out the {value} field
         </p>
       ))}
-      <form onSubmit={handleSubmit}>
-        <label>First Name</label>
-        <input
-          type='text'
-          name='firstName'
-          value={state.firstName}
-          onChange={updateFieldValue('firstName')}
-        />
-        <label>Last Name</label>
-        <input
-          type='text'
-          name='lastName'
-          value={state.lastName}
-          onChange={updateFieldValue('lastName')}
-        />
-        <label>Email</label>
-        <input
-          type='email'
-          name='email'
-          value={state.email}
-          onChange={updateFieldValue('email')}
-        />
-        <label>Date</label>
-        <input
-          type='date'
-          name='date'
-          min='2020-07-01'
-          max='2020-10-01'
-          value={state.date}
-          onChange={updateFieldValue('date')}
-        />
-        <label>Gender</label>
-        <select
-          name='gender'
-          value={state.gender}
-          onChange={updateFieldValue('gender')}
-        >
-          <option defaultValue value={''} disabled={state.gender}>
-            -
-          </option>
-          <option value='MALE'>M</option>
-          <option value='FEMALE'>F</option>
-        </select>
-        <label>Weight</label>
-        <input
-          type='range'
-          name='weight'
-          min='64'
-          max='160'
-          value={state.weight}
-          onChange={updateFieldValue('weight')}
-        />
-        {calculateWeight(state.weight)}
-        <button type='submit'>Submit entry!</button>
-      </form>
+      {isStatusSuccess(state) ? (
+        <p>
+          congrats! your entry has been successfully created. check your email
+          for confirmation!
+        </p>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          {createFormField({
+            label: 'First Name',
+            name: 'firstName'
+          })}
+          {createFormField({
+            label: 'Last Name',
+            name: 'lastName'
+          })}
+          {createFormField({
+            label: 'Email',
+            name: 'email',
+            type: 'emai'
+          })}
+          {createFormField({
+            label: 'Date',
+            name: 'date',
+            type: 'date',
+            options: {
+              min: '2020-07-01',
+              max: '2020-09-01'
+            }
+          })}
+          <label>
+            Gender
+            <select
+              name='gender'
+              value={state.gender}
+              onChange={updateFieldValue('gender')}
+            >
+              <option defaultValue value={''} disabled={state.gender}>
+                -
+              </option>
+              <option value='MALE'>M</option>
+              <option value='FEMALE'>F</option>
+            </select>
+          </label>
+          {createFormField({
+            label: 'Weight',
+            name: 'weight',
+            type: 'range',
+            options: {
+              min: '64',
+              max: '160'
+            }
+          })}
+          {calculateWeight(state.weight)}
+          <button type='submit'>Submit entry!</button>
+        </form>
+      )}
     </div>
   )
 }
