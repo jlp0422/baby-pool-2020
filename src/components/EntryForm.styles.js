@@ -29,7 +29,7 @@ export const FormInput = styled.input`
   box-sizing: border-box;
   font-size: 1.6rem;
   line-height: 2rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   border: 1px solid #444;
   display: block;
   width: 100%;
@@ -129,11 +129,8 @@ export const FormInputRange = styled(FormInput)`
 `
 
 export const FormSelect = styled.select`
-  border-radius: 0.25rem;
-  box-sizing: border-box;
   font-size: 1.5rem;
-  line-height: 2rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   border: 1px solid #444;
   display: block;
   width: 100%;
@@ -152,5 +149,5 @@ export const FormButton = styled.button`
   color: #fff;
   font-weight: bold;
   width: 125px;
-  box-shadow: 1px 2px 8px #888888
+  box-shadow: 1px 2px 5px #888888
 `

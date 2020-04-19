@@ -56,7 +56,7 @@ const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
           type: 'email'
         })}
         {createFormField({
-          label: 'Due Date',
+          label: 'Birthday',
           name: 'date',
           type: 'date',
           options: {
@@ -89,7 +89,7 @@ const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
         })}
         <p>{calculateWeight(state.weight)}</p>
       </FormContent>
-      <FormButton type='submit'>Submit entry!</FormButton>
+      <FormButton type='submit'>Submit!</FormButton>
     </Form>
   )
 }

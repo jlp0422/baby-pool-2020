@@ -3,23 +3,37 @@ import { Link } from 'gatsby'
 import styled from '@emotion/styled'
 
 const Container = styled.nav`
-  width: 90vw;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  background-color: #00bfff;
+  padding: 0.5rem 1rem;
   > a {
     margin: 5px auto;
-    /* color: #89cff0; */
+    color: white;
     font-weight: bold;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    :hover {
+      border-bottom: 2px solid hsla(195, 100%, 100%, .3)
+    }
   }
 `
+
+const linkActiveStyle = { borderBottom: '2px solid white' }
 
 const Navigation = () => {
   return (
     <Container>
-      <Link to='/'>Home</Link>
-      <Link to='/entries/create'>Create an entry</Link>
-      <Link to='/entries'>View all entries</Link>
+      <Link to='/' activeStyle={linkActiveStyle}>
+        Home
+      </Link>
+      <Link activeStyle={linkActiveStyle} to='/entries/create/'>
+        Create
+      </Link>
+      <Link activeStyle={linkActiveStyle} to='/entries/'>
+        View
+      </Link>
     </Container>
   )
 }

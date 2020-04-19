@@ -22,6 +22,7 @@ const ErrorCopy = styled(P)`
 
 const H1 = styled.h1`
   font-size: 2rem;
+  text-align: center;
 `
 
 const INITIAL_STATE = {
@@ -123,7 +124,7 @@ const CreateEntry = () => {
 
   return (
     <Layout>
-      <H1>Submit your guess!</H1>
+      <H1>Guess the baby's birthday, gender, and weight!</H1>
       {renderFormErrors(state.errors)}
       {renderForm()}
     </Layout>
