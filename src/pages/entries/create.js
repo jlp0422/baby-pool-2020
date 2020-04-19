@@ -1,11 +1,28 @@
 import axios from 'axios'
 import React, { useReducer } from 'react'
 import {
-  calculateWeight,
   formatField,
-  STATUSES,
-  isStatusSuccess
+  isStatusSuccess,
+  isStatusError,
+  STATUSES
 } from '../../utils'
+import EntryForm from '../../components/EntryForm'
+import Layout from '../../components/Layout'
+import styled from '@emotion/styled'
+
+const P = styled.p`
+  font-size: 1.6rem;
+`
+
+const ErrorCopy = styled(P)`
+  color: red;
+  font-weight: bold;
+  font-size: ${props => props.size || '1.6rem'}
+`
+
+const H1 = styled.h1`
+  font-size: 2rem;
+`
 
 const INITIAL_STATE = {
   firstName: '',
@@ -66,96 +83,50 @@ const CreateEntry = () => {
   const createEntryInDatabase = async () => {
     setStatus(STATUSES.PENDING)
     await axios
-      .post('/api/createEntry', state)
-      .then(response => {
-        console.log('*** response', response)
-        if (response.status === 200) {
-          setStatus(STATUSES.SUCCESS)
-          dispatch({ type: 'SUCCESSFUL_SUBMISSION' })
-        }
+      .post('/api/create-entry', state)
+      .then(() => {
+        setStatus(STATUSES.SUCCESS)
+        dispatch({ type: 'SUCCESSFUL_SUBMISSION' })
       })
-      .catch(console.error)
+      .catch(error => {
+        console.error(error)
+        setStatus(STATUSES.ERROR)
+      })
   }
 
-  const createFormField = ({ label, name, type = 'text', options = {} }) => (
-    <label>
-      {label}
-      <input
-        type={type}
-        name={name}
-        value={state[name]}
-        {...options}
-        onChange={updateFieldValue(name)}
+  const renderForm = () => {
+    if (isStatusError(state)) {
+      return <ErrorCopy size="2rem">Error submitting entry. Refresh and try again!</ErrorCopy>
+    }
+
+    if (isStatusSuccess(state)) {
+      return (
+        <P>
+          Congrats! your entry has been successfully created. Check your email
+          for confirmation!
+        </P>
+      )
+    }
+    return (
+      <EntryForm
+        handleSubmit={handleSubmit}
+        updateFieldValue={updateFieldValue}
+        state={state}
       />
-    </label>
-  )
+    )
+  }
+
+  const renderFormErrors = errors =>
+    errors.map(({ field, value }) => (
+      <ErrorCopy key={field}>Please fill out the {value} field</ErrorCopy>
+    ))
 
   return (
-    <div>
-      <h1>create an entry!</h1>
-      <p>status: {state.status}</p>
-      {state.errors.map(({ field, value }) => (
-        <p key={field} style={{ color: 'red', fontWeight: 'bold' }}>
-          Please fill out the {value} field
-        </p>
-      ))}
-      {isStatusSuccess(state) ? (
-        <p>
-          congrats! your entry has been successfully created. check your email
-          for confirmation!
-        </p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          {createFormField({
-            label: 'First Name',
-            name: 'firstName'
-          })}
-          {createFormField({
-            label: 'Last Name',
-            name: 'lastName'
-          })}
-          {createFormField({
-            label: 'Email',
-            name: 'email',
-            type: 'emai'
-          })}
-          {createFormField({
-            label: 'Date',
-            name: 'date',
-            type: 'date',
-            options: {
-              min: '2020-07-01',
-              max: '2020-09-01'
-            }
-          })}
-          <label>
-            Gender
-            <select
-              name='gender'
-              value={state.gender}
-              onChange={updateFieldValue('gender')}
-            >
-              <option defaultValue value={''} disabled={state.gender}>
-                -
-              </option>
-              <option value='MALE'>M</option>
-              <option value='FEMALE'>F</option>
-            </select>
-          </label>
-          {createFormField({
-            label: 'Weight',
-            name: 'weight',
-            type: 'range',
-            options: {
-              min: '64',
-              max: '160'
-            }
-          })}
-          {calculateWeight(state.weight)}
-          <button type='submit'>Submit entry!</button>
-        </form>
-      )}
-    </div>
+    <Layout>
+      <H1>Submit your guess!</H1>
+      {renderFormErrors(state.errors)}
+      {renderForm()}
+    </Layout>
   )
 }
 

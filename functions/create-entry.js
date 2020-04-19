@@ -31,8 +31,9 @@ const CREATE_ENTRY = `
 `
 
 exports.handler = async event => {
-  const params = JSON.parse(event.body)
-  const { data, errors } = await sendQuery(CREATE_ENTRY, { ...params })
+  const variables = JSON.parse(event.body)
+  const { data, errors } = await sendQuery(CREATE_ENTRY, { ...variables })
+
   if (errors) {
     return {
       statusCode: 500,

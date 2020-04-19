@@ -5,10 +5,11 @@ export const calculateWeight = oz => {
   return `${pounds} pounds, ${ounces} ounces`
 }
 
-export const formatField = field =>
-  field.replace(/[A-Z]/, ' $&').replace(/^\w{1}/, match => match.toUpperCase())
+export const formatField = field => field.replace(/[A-Z]/, ' $&').toUpperCase()
 
 export const isStatusSuccess = ({ status }) => status === STATUSES.SUCCESS
+
+export const isStatusError = ({ status }) => status === STATUSES.ERROR
 
 export const STATUSES = {
   IDLE: 'IDLE',
