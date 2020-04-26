@@ -7,7 +7,6 @@ const GET_ALL_ENTRIES = `
         _id
         firstName
         lastName
-        email
         gender
         weight
         date

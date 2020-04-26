@@ -6,7 +6,6 @@ enum Gender {
 type Entry {
   firstName: String!
   lastName: String!
-  email: String!
   date: String!
   gender: Gender!
   weight: String! # total OZ

@@ -51,12 +51,7 @@ const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
           name: 'lastName'
         })}
         {createFormField({
-          label: 'Email',
-          name: 'email',
-          type: 'email'
-        })}
-        {createFormField({
-          label: 'Birthday',
+          label: 'Birthday Guess',
           name: 'date',
           type: 'date',
           options: {
@@ -65,7 +60,7 @@ const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
           }
         })}
         <FormLabel>
-          Gender
+          Gender Guess
           <FormSelect
             name='gender'
             value={state.gender}
@@ -74,12 +69,12 @@ const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
             <option defaultValue value={''} disabled={state.gender}>
               -
             </option>
-            <option value='MALE'>M</option>
-            <option value='FEMALE'>F</option>
+            <option value='MALE'>Male</option>
+            <option value='FEMALE'>Female</option>
           </FormSelect>
         </FormLabel>
         {createFormField({
-          label: 'Weight',
+          label: 'Weight Guess',
           name: 'weight',
           type: 'range',
           options: {

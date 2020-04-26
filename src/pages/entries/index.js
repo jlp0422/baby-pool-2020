@@ -9,6 +9,7 @@ const source = CancelToken.source()
 const isAscending = direction => direction === '+'
 const isDate = property => property === 'date'
 const isWeight = property => property === 'weight'
+
 const flipSort = currentSort => {
   const direction = currentSort.slice(0, 1)
   const property = currentSort.slice(1)
@@ -43,10 +44,12 @@ const Entries = () => {
   }, [])
 
   const compareFunc = (a, b) => {
-    if (a[property] < b[property]) {
+    const aProp = isWeight(property) ? Number(a[property]) : a[property]
+    const bProp = isWeight(property) ? Number(b[property]) : b[property]
+    if (aProp < bProp) {
       return isAscending(direction) ? -1 : 1
     }
-    if (a[property] > b[property]) {
+    if (aProp > bProp) {
       return isAscending(direction) ? 1 : -1
     }
     return 0
@@ -58,22 +61,22 @@ const Entries = () => {
     <span>&#x25BC;</span>
   )
 
+  const renderButton = (buttonTitle, comparison) => (
+    <button
+      onClick={() =>
+        setSort(comparison ? flipSort(sort) : `+${buttonTitle.toLowerCase()}`)
+      }
+    >
+      {buttonTitle} {comparison && arrowDirection}
+    </button>
+  )
+
   return (
     <Layout>
       <h1>All Guesses</h1>
       <div>
-        <button
-          onClick={() => setSort(isDate(property) ? flipSort(sort) : '+date')}
-        >
-          Date {isDate(property) && arrowDirection}
-        </button>
-        <button
-          onClick={() =>
-            setSort(isWeight(property) ? flipSort(sort) : '+weight')
-          }
-        >
-          Weight {isWeight(property) && arrowDirection}
-        </button>
+        {renderButton('Date', isDate(property))}
+        {renderButton('Weight', isWeight(property))}
       </div>
       {isLoading ? <Loading /> : null}
       {entries.sort(compareFunc).map(entry => (

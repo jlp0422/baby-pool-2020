@@ -15,6 +15,7 @@ export const capitalizeWord = word => {
 
 export const isStatusSuccess = ({ status }) => status === STATUSES.SUCCESS
 export const isStatusError = ({ status }) => status === STATUSES.ERROR
+export const isStatusPending = ({ status }) => status === STATUSES.PENDING
 
 export const formatDate = date => {
   const [year, month, day] = date.split('-')

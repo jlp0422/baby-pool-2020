@@ -1,23 +1,31 @@
+import styled from '@emotion/styled'
 import axios from 'axios'
+import { Link } from 'gatsby'
 import React, { useReducer } from 'react'
-import {
-  formatField,
-  isStatusSuccess,
-  isStatusError,
-  STATUSES
-} from '../../utils'
 import EntryForm from '../../components/EntryForm'
 import Layout from '../../components/Layout'
-import styled from '@emotion/styled'
+import Loading from '../../components/Loading'
+import {
+  formatField,
+  isStatusError,
+  isStatusPending,
+  isStatusSuccess,
+  STATUSES
+} from '../../utils'
 
 const P = styled.p`
   font-size: 1.6rem;
+  > a {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #00bfff;
+  }
 `
 
 const ErrorCopy = styled(P)`
   color: red;
   font-weight: bold;
-  font-size: ${props => props.size || '1.6rem'}
+  font-size: ${props => props.size || '1.6rem'};
 `
 
 const H1 = styled.h1`
@@ -28,7 +36,6 @@ const H1 = styled.h1`
 const INITIAL_STATE = {
   firstName: '',
   lastName: '',
-  email: '',
   date: '',
   gender: '',
   weight: 0,
@@ -96,18 +103,27 @@ const CreateEntry = () => {
   }
 
   const renderForm = () => {
+    if (isStatusPending(state)) {
+      return <Loading />
+    }
+
     if (isStatusError(state)) {
-      return <ErrorCopy size="2rem">Error submitting entry. Refresh and try again!</ErrorCopy>
+      return (
+        <ErrorCopy size='2rem'>
+          Error submitting entry. Refresh and try again!
+        </ErrorCopy>
+      )
     }
 
     if (isStatusSuccess(state)) {
       return (
         <P>
-          Congrats! your entry has been successfully created. Check your email
-          for confirmation!
+          Congrats! Your entry has been successfully created. Check the{' '}
+          <Link to='/entries/'>entries page</Link> to see all entries!!
         </P>
       )
     }
+
     return (
       <EntryForm
         handleSubmit={handleSubmit}

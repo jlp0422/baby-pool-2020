@@ -4,7 +4,6 @@ const CREATE_ENTRY = `
   mutation(
     $firstName: String!
     $lastName: String!
-    $email: String!
     $gender: Gender!
     $weight: String!
     $date: String!
@@ -13,7 +12,6 @@ const CREATE_ENTRY = `
       data: {
         firstName: $firstName
         lastName: $lastName
-        email: $email
         gender: $gender
         weight: $weight
         date: $date
@@ -22,7 +20,6 @@ const CREATE_ENTRY = `
       _id
       firstName
       lastName
-      email
       gender
       weight
       date

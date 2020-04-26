@@ -28,11 +28,11 @@ const Navigation = () => {
       <Link to='/' activeStyle={linkActiveStyle}>
         Home
       </Link>
-      <Link activeStyle={linkActiveStyle} to='/entries/create/'>
-        Create
-      </Link>
       <Link activeStyle={linkActiveStyle} to='/entries/'>
         View
+      </Link>
+      <Link activeStyle={linkActiveStyle} to='/entries/create/'>
+        Create
       </Link>
     </Container>
   )
