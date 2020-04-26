@@ -5,6 +5,7 @@ import React, { useReducer } from 'react'
 import EntryForm from '../../components/EntryForm'
 import Layout from '../../components/Layout'
 import Loading from '../../components/Loading'
+import { H1, P } from '../../shared/styles'
 import {
   formatField,
   isStatusError,
@@ -13,24 +14,10 @@ import {
   STATUSES
 } from '../../utils'
 
-const P = styled.p`
-  font-size: 1.6rem;
-  > a {
-    text-decoration: underline;
-    font-weight: bold;
-    color: #00bfff;
-  }
-`
-
 const ErrorCopy = styled(P)`
   color: red;
   font-weight: bold;
   font-size: ${props => props.size || '1.6rem'};
-`
-
-const H1 = styled.h1`
-  font-size: 2rem;
-  text-align: center;
 `
 
 const INITIAL_STATE = {
@@ -119,7 +106,7 @@ const CreateEntry = () => {
       return (
         <P>
           Congrats! Your entry has been successfully created. Check the{' '}
-          <Link to='/entries/'>entries page</Link> to see all entries!!
+          <Link to='/entries'>entries page</Link> to see all entries!!
         </P>
       )
     }

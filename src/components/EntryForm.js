@@ -51,7 +51,7 @@ const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
           name: 'lastName'
         })}
         {createFormField({
-          label: 'Birthday Guess',
+          label: 'Birthday',
           name: 'date',
           type: 'date',
           options: {
@@ -60,7 +60,7 @@ const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
           }
         })}
         <FormLabel>
-          Gender Guess
+          Gender
           <FormSelect
             name='gender'
             value={state.gender}
@@ -74,7 +74,7 @@ const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
           </FormSelect>
         </FormLabel>
         {createFormField({
-          label: 'Weight Guess',
+          label: 'Weight',
           name: 'weight',
           type: 'range',
           options: {

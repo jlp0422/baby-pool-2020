@@ -1,13 +1,13 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import Layout from '../components/Layout'
+import { H1, StyledLink, P } from '../shared/styles'
 
 const Home = () => {
   return (
     <Layout>
-      <h1>The homepage</h1>
-      <Link to='/entries/create'>Create an entry</Link>
-      <Link to='/entries'>View all entries</Link>
+      <H1>Welcome to Philipson Baby Pool 2020!</H1>
+      <StyledLink to='/entries/create'>Create an entry</StyledLink>
+      <StyledLink to='/entries'>View all entries</StyledLink>
     </Layout>
   )
 }

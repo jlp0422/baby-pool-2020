@@ -17,16 +17,27 @@ export const isStatusSuccess = ({ status }) => status === STATUSES.SUCCESS
 export const isStatusError = ({ status }) => status === STATUSES.ERROR
 export const isStatusPending = ({ status }) => status === STATUSES.PENDING
 
+const removeStartingZeroes = numString => numString.replace(/^0/, '')
+
 export const formatDate = date => {
   const [year, month, day] = date.split('-')
-  return `${removeZeroes(month)}/${removeZeroes(day)}/${year}`
+  return `${removeStartingZeroes(month)}/${removeStartingZeroes(day)}/${year}`
 }
-
-const removeZeroes = numString => numString.split('').filter(Number).join('')
 
 export const STATUSES = {
   IDLE: 'IDLE',
   PENDING: 'PENDING',
   SUCCESS: 'SUCCESS',
   ERROR: 'ERROR'
+}
+
+export const isAscending = direction => direction === '+'
+export const isDate = property => property === 'date'
+export const isWeight = property => property === 'weight'
+
+export const flipSort = currentSort => {
+  const direction = currentSort.slice(0, 1)
+  const property = currentSort.slice(1)
+  const newDir = isAscending(direction) ? '-' : '+'
+  return `${newDir}${property}`
 }

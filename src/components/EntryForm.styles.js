@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-
+import { Button } from '../shared/styles'
 export const Form = styled.form`
   margin: 2rem auto;
   padding: 0;
@@ -137,17 +137,6 @@ export const FormSelect = styled.select`
   margin: 0 0 1.2rem;
 `
 
-export const FormButton = styled.button`
-  border-radius: 0.25rem;
-  box-sizing: border-box;
-  font-size: 1.5rem;
-  line-height: 2rem;
+export const FormButton = styled(Button)`
   margin-top: 2rem;
-  padding: 0.5rem;
-  background: #00bfff;
-  border: 1px solid #00bfff;
-  color: #fff;
-  font-weight: bold;
-  width: 125px;
-  box-shadow: 1px 2px 5px #888888
 `

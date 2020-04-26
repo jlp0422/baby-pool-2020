@@ -3,19 +3,18 @@ import React, { useEffect, useState } from 'react'
 import Entry from '../../components/Entry'
 import Layout from '../../components/Layout'
 import Loading from '../../components/Loading'
+import { Button as RawButton, H1 } from '../../shared/styles'
+import { isAscending, isDate, isWeight, flipSort } from '../../utils'
+import styled from '@emotion/styled'
 const CancelToken = axios.CancelToken
 const source = CancelToken.source()
 
-const isAscending = direction => direction === '+'
-const isDate = property => property === 'date'
-const isWeight = property => property === 'weight'
-
-const flipSort = currentSort => {
-  const direction = currentSort.slice(0, 1)
-  const property = currentSort.slice(1)
-  const newDir = isAscending(direction) ? '-' : '+'
-  return `${newDir}${property}`
-}
+const Button = styled(RawButton)`
+  :not(:first-of-type) {
+    margin-left: 10px;
+    margin-top: 0;
+  }
+`
 
 const Entries = () => {
   const [entries, setEntries] = useState([])
@@ -55,25 +54,22 @@ const Entries = () => {
     return 0
   }
 
-  const arrowDirection = isAscending(direction) ? (
-    <span>&#x25B2;</span>
-  ) : (
-    <span>&#x25BC;</span>
-  )
+  const renderArrow = () =>
+    isAscending(direction) ? <span>&#x25B2;</span> : <span>&#x25BC;</span>
 
   const renderButton = (buttonTitle, comparison) => (
-    <button
+    <Button
       onClick={() =>
         setSort(comparison ? flipSort(sort) : `+${buttonTitle.toLowerCase()}`)
       }
     >
-      {buttonTitle} {comparison && arrowDirection}
-    </button>
+      {buttonTitle} {comparison && renderArrow()}
+    </Button>
   )
 
   return (
     <Layout>
-      <h1>All Guesses</h1>
+      <H1>All Guesses</H1>
       <div>
         {renderButton('Date', isDate(property))}
         {renderButton('Weight', isWeight(property))}

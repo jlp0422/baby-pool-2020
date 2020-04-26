@@ -15,7 +15,7 @@ const Container = styled.nav`
     text-decoration: none;
     border-bottom: 2px solid transparent;
     :hover {
-      border-bottom: 2px solid hsla(195, 100%, 100%, .3)
+      border-bottom: 2px solid hsla(195, 100%, 100%, 0.3);
     }
   }
 `
@@ -28,10 +28,10 @@ const Navigation = () => {
       <Link to='/' activeStyle={linkActiveStyle}>
         Home
       </Link>
-      <Link activeStyle={linkActiveStyle} to='/entries/'>
+      <Link activeStyle={linkActiveStyle} to='/entries'>
         View
       </Link>
-      <Link activeStyle={linkActiveStyle} to='/entries/create/'>
+      <Link activeStyle={linkActiveStyle} to='/entries/create'>
         Create
       </Link>
     </Container>
