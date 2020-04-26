@@ -31,7 +31,11 @@ const Navigation = () => {
       <Link activeStyle={linkActiveStyle} to='/entries'>
         View
       </Link>
-      <Link activeStyle={linkActiveStyle} to='/entries/create'>
+      <Link
+        activeStyle={linkActiveStyle}
+        to='/entries/create'
+        state={{ fromNavigation: true }}
+      >
         Create
       </Link>
     </Container>

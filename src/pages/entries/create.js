@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import axios from 'axios'
 import { Link } from 'gatsby'
-import React, { useReducer } from 'react'
+import React, { useReducer, useEffect } from 'react'
 import EntryForm from '../../components/EntryForm'
 import Layout from '../../components/Layout'
 import Loading from '../../components/Loading'
@@ -42,13 +42,19 @@ const reducer = (state, action) => {
       return { ...state, errors: [] }
     case 'SUCCESSFUL_SUBMISSION':
       return { ...state, status: STATUSES.SUCCESS }
+    case 'RESET_FORM':
+      return INITIAL_STATE
     default:
       return state
   }
 }
 
-const CreateEntry = () => {
+const CreateEntry = ({ location }) => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE)
+  useEffect(() => {
+    dispatch({ type: 'RESET_FORM' })
+  }, [location.state])
+
   const setStatus = status => dispatch({ type: 'UPDATE_STATUS', status })
   const addError = error => dispatch({ type: 'ADD_ERROR', error })
   const resetErrors = () => dispatch({ type: 'RESET_ERRORS' })
@@ -67,10 +73,16 @@ const CreateEntry = () => {
       if (!value) {
         addError({
           field,
-          value: formatField(field)
+          copy: `Please fill out the ${formatField(field)} field`
         })
         return
       }
+    }
+    if (!state.date.match(/\d{4}-\d{2}-\d{2}/)) {
+      return addError({
+        field: 'date',
+        copy: 'Date must be in YYYY-MM-DD format'
+      })
     }
     createEntryInDatabase()
   }
@@ -121,8 +133,8 @@ const CreateEntry = () => {
   }
 
   const renderFormErrors = errors =>
-    errors.map(({ field, value }) => (
-      <ErrorCopy key={field}>Please fill out the {value} field</ErrorCopy>
+    errors.map(({ field, copy }) => (
+      <ErrorCopy key={field}>{copy}</ErrorCopy>
     ))
 
   return (

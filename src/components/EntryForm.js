@@ -23,7 +23,7 @@ const getInput = type => {
 }
 
 const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
-  const createFormField = ({ label, name, type = 'text', options = {} }) => {
+  const createFormField = ({ label, name, type = 'text', options = {}, placeholder = '' }) => {
     const Input = getInput(type)
     return (
       <FormLabel>
@@ -33,6 +33,7 @@ const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
           name={name}
           value={state[name]}
           {...options}
+          placeholder={placeholder}
           onChange={updateFieldValue(name)}
         />
       </FormLabel>
@@ -57,7 +58,8 @@ const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
           options: {
             min: '2020-07-01',
             max: '2020-09-01'
-          }
+          },
+          placeholder: "yyyy-mm-dd"
         })}
         <FormLabel>
           Gender
