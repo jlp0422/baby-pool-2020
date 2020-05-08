@@ -16,7 +16,10 @@ export const Button = styled.button`
 `
 
 export const H1 = styled.h1`
-  font-size: 2.4rem;
+  text-transform: lowercase;
+  font-family: 'A Little Mixed Up';
+  color: #00bfff;
+  font-size: 4.4rem;
   text-align: center;
 `
 
@@ -40,6 +43,6 @@ export const LinkContainer = styled.div`
   display: flex;
   justify-content: space-around;
   > * {
-    margin-top: 0
+    margin-top: 0;
   }
 `

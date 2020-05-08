@@ -16,6 +16,14 @@ const Button = styled(RawButton)`
   }
 `
 
+const EntryContainer = styled.div`
+margin-top: 20px;
+  > * { margin-top: 0};
+  display: grid;
+  grid-template-columns: repeat(2, 47%);
+  grid-column-gap: 6%;
+`
+
 const Entries = () => {
   const [entries, setEntries] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -75,9 +83,11 @@ const Entries = () => {
         {renderButton('Weight', isWeight(property))}
       </div>
       {isLoading && <Loading />}
+      <EntryContainer>
       {entries.sort(compareFunc).map(entry => (
         <Entry entry={entry} key={entry._id} />
       ))}
+      </EntryContainer>
     </Layout>
   )
 }

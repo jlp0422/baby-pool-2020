@@ -17,6 +17,9 @@ const Links = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   > a {
+    text-transform: lowercase;
+    font-family: 'Chock A Block NF';
+    font-size: 3rem;
     margin: 5px auto;
     color: white;
     font-weight: bold;

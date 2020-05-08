@@ -6,7 +6,7 @@ import { H1, StyledLink, LinkContainer } from '../shared/styles'
 const Home = () => {
   return (
     <Layout>
-      <H1>Welcome to the Philipson Baby Pool 2020!</H1>
+      <H1>Baby Philipson 2020!</H1>
       <LinkContainer>
         <StyledLink to='/entries/create'>Create an entry</StyledLink>
         <StyledLink to='/entries'>View all entries</StyledLink>

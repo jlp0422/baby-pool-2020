@@ -9,6 +9,14 @@ module.exports = {
       options: {
         path: `${__dirname}/src/images/`
       }
+    },
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      // options: {
+      //   google: {
+      //     families: ['Indie Flower']
+      //   }
+      // }
     }
   ]
 }

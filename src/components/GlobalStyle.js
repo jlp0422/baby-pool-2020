@@ -1,4 +1,5 @@
 import { css, Global } from '@emotion/core'
+import background from '../backgrounds/background.jpg'
 import React from 'react'
 
 export default () => {
@@ -14,7 +15,9 @@ export default () => {
         }
         html,
         body {
-          background-color: pink;
+          background-image: url(${background});
+          background-repeat: repeat;
+          /* opacity: 0.3; */
           margin: 0;
           font-family: -apple-system, BlinkMacSystemFont,
             'Segoe UI', Roboto, Helvetica, Arial, sans-serif,

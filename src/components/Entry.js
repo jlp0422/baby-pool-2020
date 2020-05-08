@@ -31,7 +31,7 @@ const Entry = ({ entry }) => {
   return (
     <Container key={entry._id}>
       <p>
-        {entry.firstName} {entry.lastName}
+        Entry: {entry.firstName} {entry.lastName}
       </p>
       <Guesses>
         <GuessItem value={capitalizeWord(entry.gender)} label='Gender' />
