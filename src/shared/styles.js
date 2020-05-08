@@ -31,6 +31,15 @@ export const P = styled.p`
 
 export const StyledLink = styled(Link)`
   text-decoration: underline;
+  font-size: 1.8rem;
   font-weight: bold;
   color: #00bfff;
+`
+
+export const LinkContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  > * {
+    margin-top: 0
+  }
 `

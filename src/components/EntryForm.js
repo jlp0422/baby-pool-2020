@@ -23,7 +23,13 @@ const getInput = type => {
 }
 
 const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
-  const createFormField = ({ label, name, type = 'text', options = {}, placeholder = '' }) => {
+  const createFormField = ({
+    label,
+    name,
+    type = 'text',
+    options = {},
+    placeholder = ''
+  }) => {
     const Input = getInput(type)
     return (
       <FormLabel>
@@ -52,14 +58,14 @@ const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
           name: 'lastName'
         })}
         {createFormField({
-          label: 'Birthday',
+          label: 'Birthday (Due date: 7/23)',
           name: 'date',
           type: 'date',
           options: {
             min: '2020-07-01',
             max: '2020-09-01'
           },
-          placeholder: "yyyy-mm-dd"
+          placeholder: 'yyyy-mm-dd'
         })}
         <FormLabel>
           Gender

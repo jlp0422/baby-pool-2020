@@ -1,16 +1,16 @@
 import React, { Fragment } from 'react'
-import Navigation from './Navigation'
-import { PageContainer, ContentContainer } from './Layout.styles'
 import GlobalStyle from './GlobalStyle'
+import { ContentContainer } from './Layout.styles'
+import Navigation from './Navigation'
 
 const Layout = ({ children }) => {
   return (
     <Fragment>
       <GlobalStyle />
-      <PageContainer>
+      <Fragment>
         <Navigation />
         <ContentContainer>{children}</ContentContainer>
-      </PageContainer>
+      </Fragment>
     </Fragment>
   )
 }

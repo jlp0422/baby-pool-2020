@@ -21,6 +21,7 @@ const Container = styled.div`
 const Guesses = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  margin-top: 0;
   @media screen and (max-width: 640px) {
     display: block;
   }

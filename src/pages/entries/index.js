@@ -74,7 +74,7 @@ const Entries = () => {
         {renderButton('Date', isDate(property))}
         {renderButton('Weight', isWeight(property))}
       </div>
-      {isLoading ? <Loading /> : null}
+      {isLoading && <Loading />}
       {entries.sort(compareFunc).map(entry => (
         <Entry entry={entry} key={entry._id} />
       ))}

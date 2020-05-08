@@ -14,6 +14,7 @@ export default () => {
         }
         html,
         body {
+          background-color: pink;
           margin: 0;
           font-family: -apple-system, BlinkMacSystemFont,
             'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
