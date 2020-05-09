@@ -10,6 +10,13 @@ module.exports = {
         path: `${__dirname}/src/images/`
       }
     },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   name: `backgrounds`,
+    //   options: {
+    //     path: `${__dirname}/src/backgrounds/`
+    //   }
+    // },
     {
       resolve: 'gatsby-plugin-web-font-loader',
       // options: {

@@ -5,9 +5,10 @@ import GuessItem from './GuessItem'
 
 const Container = styled.div`
   display: grid;
+  margin-top: 0;
   grid-template-rows: 25px 1fr;
   font-size: 1.6rem;
-  background-color: white;
+  background-color: ${({ isBoy }) => (isBoy ? '#00bfff' : 'pink')};
   border-radius: 4px;
   border: 1px solid #444;
   padding: 8px;
@@ -16,12 +17,16 @@ const Container = styled.div`
     font-weight: bold;
     font-size: 1.8rem;
   }
+  @media screen and (max-width: 640px) {
+    margin-top: 10px;
+  }
 `
 
 const Guesses = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 0;
+  align-items: center;
   @media screen and (max-width: 640px) {
     display: block;
   }
@@ -29,7 +34,7 @@ const Guesses = styled.div`
 
 const Entry = ({ entry }) => {
   return (
-    <Container key={entry._id}>
+    <Container key={entry._id} isBoy={entry.gender === 'MALE'}>
       <p>
         Entry: {entry.firstName} {entry.lastName}
       </p>

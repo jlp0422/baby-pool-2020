@@ -18,10 +18,12 @@ const Button = styled(RawButton)`
 
 const EntryContainer = styled.div`
 margin-top: 20px;
-  > * { margin-top: 0};
   display: grid;
-  grid-template-columns: repeat(2, 47%);
-  grid-column-gap: 6%;
+  grid-template-columns: repeat(2, 48%);
+  grid-gap: 4%;
+  @media screen and (max-width: 640px) {
+    display: block;
+  }
 `
 
 const Entries = () => {

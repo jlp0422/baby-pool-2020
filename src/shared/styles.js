@@ -21,6 +21,9 @@ export const H1 = styled.h1`
   color: #00bfff;
   font-size: 4.4rem;
   text-align: center;
+  @media screen and (max-width: 640px) {
+    font-size: 3.4rem;
+  }
 `
 
 export const P = styled.p`
