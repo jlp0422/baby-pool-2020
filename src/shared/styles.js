@@ -8,7 +8,7 @@ export const Button = styled.button`
   line-height: 2rem;
   padding: 0.5rem;
   background: ${({ color = '#00bfff' }) => color};
-  border: 1px solid ${({ color = '#00bfff'}) => color};
+  border: 1px solid ${({ color = '#00bfff' }) => color};
   color: #fff;
   font-weight: bold;
   width: 125px;
@@ -23,6 +23,15 @@ export const H1 = styled.h1`
   text-align: center;
   @media screen and (max-width: 640px) {
     font-size: 3.4rem;
+  }
+`
+
+export const H2 = styled.h2`
+  color: #00bfff;
+  font-size: 3.5rem;
+  text-align: left;
+  @media screen and (max-width: 640px) {
+    font-size: 2rem;
   }
 `
 

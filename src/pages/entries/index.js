@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Entry from '../../components/Entry'
 import Layout from '../../components/Layout'
 import Loading from '../../components/Loading'
-import { Button as RawButton, H1 } from '../../shared/styles'
+import { Button as RawButton, H1, H2 } from '../../shared/styles'
 import { isAscending, isDate, isWeight, flipSort } from '../../utils'
 import styled from '@emotion/styled'
 const CancelToken = axios.CancelToken
@@ -80,9 +80,13 @@ const Entries = () => {
       </div>
       {isLoading && <Loading />}
       <EntryContainer>
-        {entries.sort(compareFunc).map(entry => (
-          <Entry entry={entry} key={entry._id} />
-        ))}
+        {entries.length ? (
+          entries
+            .sort(compareFunc)
+            .map(entry => <Entry entry={entry} key={entry._id} />)
+        ) : (
+          <H2>No entries yet!</H2>
+        )}
       </EntryContainer>
     </Layout>
   )

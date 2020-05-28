@@ -15,7 +15,7 @@ const Div = styled.div`
 const Image = () => {
   const data = useStaticQuery(graphql`
     query {
-      allImageSharp {
+      allImageSharp(sort: { fields: fluid___originalName }) {
         edges {
           node {
             id
@@ -38,7 +38,12 @@ const Image = () => {
   return (
     <Div>
       {images.map(({ id, fluid }) => (
-        <Img key={id} fluid={fluid} alt={fluid.originalName} title={fluid.originalName} />
+        <Img
+          key={id}
+          fluid={fluid}
+          alt={fluid.originalName}
+          title={fluid.originalName}
+        />
       ))}
     </Div>
   )
