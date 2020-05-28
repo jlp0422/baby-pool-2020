@@ -16,8 +16,7 @@ export default () => {
 
         @font-face {
           font-family: 'A Little Mixed Up';
-          src: url('../fonts/mixedUp/ALittleMixedUp.woff2')
-              format('woff2'),
+          src: url('../fonts/mixedUp/ALittleMixedUp.woff2') format('woff2'),
             url('../fonts/mixedUp/ALittleMixedUp.woff') format('woff');
           font-weight: normal;
           font-style: normal;
@@ -25,10 +24,8 @@ export default () => {
 
         @font-face {
           font-family: 'Chock A Block NF';
-          src: url('../fonts/chockABlock/ChockABlockNF.woff2')
-              format('woff2'),
-            url('../fonts/chockABlock/ChockABlockNF.woff')
-              format('woff');
+          src: url('../fonts/chockABlock/ChockABlockNF.woff2') format('woff2'),
+            url('../fonts/chockABlock/ChockABlockNF.woff') format('woff');
           font-weight: normal;
           font-style: normal;
         }
@@ -40,7 +37,6 @@ export default () => {
           background-attachment: fixed;
           background-color: rgba(255, 255, 255, 0.6);
           background-blend-mode: lighten;
-          /* opacity: 0.3; */
           margin: 0;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
             Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
