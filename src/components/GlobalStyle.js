@@ -13,18 +13,38 @@ export default () => {
         * + * {
           margin-top: 1rem;
         }
+
+        @font-face {
+          font-family: 'A Little Mixed Up';
+          src: url('../fonts/mixedUp/ALittleMixedUp.woff2')
+              format('woff2'),
+            url('../fonts/mixedUp/ALittleMixedUp.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+        }
+
+        @font-face {
+          font-family: 'Chock A Block NF';
+          src: url('../fonts/chockABlock/ChockABlockNF.woff2')
+              format('woff2'),
+            url('../fonts/chockABlock/ChockABlockNF.woff')
+              format('woff');
+          font-weight: normal;
+          font-style: normal;
+        }
+
         html,
         body {
           background-image: url(${background});
           background-repeat: repeat;
           background-attachment: fixed;
-          background-color: rgba(255,255,255,0.6);
+          background-color: rgba(255, 255, 255, 0.6);
           background-blend-mode: lighten;
           /* opacity: 0.3; */
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont,
-            'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
-            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+            'Segoe UI Symbol';
           font-size: 62.5%;
           line-height: 1.4;
           /* remove margin for the main div that Gatsby mounts into */
@@ -45,7 +65,7 @@ export default () => {
           }
         }
         a {
-         font-size: 16px;
+          font-size: 16px;
         }
       `}
     />

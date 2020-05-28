@@ -71,6 +71,28 @@ const Entries = () => {
     </Button>
   )
 
+  const renderContent = () => {
+    if (isLoading) {
+      return <Loading />
+    }
+
+    if (!entries.length) {
+      return (
+        <EntryContainer>
+          <H2>No entries yet!</H2>
+        </EntryContainer>
+      )
+    }
+
+    return (
+      <EntryContainer>
+        {entries.sort(compareFunc).map(entry => (
+          <Entry entry={entry} key={entry._id} />
+        ))}
+      </EntryContainer>
+    )
+  }
+
   return (
     <Layout>
       <H1>All Guesses</H1>
@@ -78,16 +100,7 @@ const Entries = () => {
         {renderButton('Date', isDate(property))}
         {renderButton('Weight', isWeight(property))}
       </div>
-      {isLoading && <Loading />}
-      <EntryContainer>
-        {entries.length ? (
-          entries
-            .sort(compareFunc)
-            .map(entry => <Entry entry={entry} key={entry._id} />)
-        ) : (
-          <H2>No entries yet!</H2>
-        )}
-      </EntryContainer>
+      {renderContent()}
     </Layout>
   )
 }

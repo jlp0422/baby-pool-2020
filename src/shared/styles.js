@@ -17,7 +17,7 @@ export const Button = styled.button`
 
 export const H1 = styled.h1`
   text-transform: lowercase;
-  font-family: 'A Little Mixed Up';
+  font-family: 'A Little Mixed Up', Roboto, Helvetica, Arial, sans-serif;
   color: #00bfff;
   font-size: ${({ hero }) => (hero ? '5.4rem' : ' 4.4rem')};
   text-align: center;

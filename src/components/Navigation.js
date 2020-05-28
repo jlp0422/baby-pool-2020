@@ -18,7 +18,7 @@ const Links = styled.div`
   grid-template-columns: repeat(3, 1fr);
   > a {
     text-transform: lowercase;
-    font-family: 'Chock A Block NF';
+    font-family: 'Chock A Block NF', Helvetica, Arial, serif;
     font-size: 3rem;
     margin: 5px auto;
     color: white;
@@ -29,7 +29,7 @@ const Links = styled.div`
       border-bottom: 4px solid hsla(195, 100%, 100%, 0.3);
     }
     @media screen and (max-width: 640px) {
-      font-family: 'A Little Mixed Up';
+      font-family: 'A Little Mixed Up', Roboto, Helvetica, Arial, sans-serif;
       font-size: 2.4rem;
     }
   }

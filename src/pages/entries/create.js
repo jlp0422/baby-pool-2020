@@ -147,7 +147,7 @@ const CreateEntry = ({ location }) => {
 
   return (
     <Layout>
-      <H1>Guess the baby's birthday, gender, and weight!</H1>
+      <H1>Guess the baby's birthday, gender, and&nbsp;weight!</H1>
       <FormContainer formColor={getFormColor(state)}>
         {renderFormErrors(state.errors)}
         {renderForm()}
