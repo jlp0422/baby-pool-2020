@@ -17,6 +17,9 @@ export default () => {
         body {
           background-image: url(${background});
           background-repeat: repeat;
+          background-attachment: fixed;
+          background-color: rgba(255,255,255,0.6);
+          background-blend-mode: lighten;
           /* opacity: 0.3; */
           margin: 0;
           font-family: -apple-system, BlinkMacSystemFont,

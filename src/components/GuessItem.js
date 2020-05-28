@@ -11,13 +11,16 @@ const Container = styled.div`
     display: block;
     margin: 1.2rem auto;
     > p:first-of-type {
-      line-height: 1.6rem;
+      line-height: 1.8rem;
     }
   }
 `
 
 const Value = styled.p`
   font-size: 1.8rem;
+  @media screen and (max-width: 640px) {
+    font-size: 1.5rem;
+  }
 `
 
 const Label = styled.p`
@@ -25,6 +28,9 @@ const Label = styled.p`
   text-transform: uppercase;
   color: #4a4a4a;
   letter-spacing: 0.1rem;
+  @media screen and (max-width: 640px) {
+    font-size: 1.2rem;
+  }
 `
 
 const GuessItem = ({ value, label }) => {

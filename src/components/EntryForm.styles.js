@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { Button } from '../shared/styles'
 export const Form = styled.form`
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 0;
 `
 
@@ -42,6 +42,7 @@ export const FormInputDate = styled(FormInput)`
 `
 
 export const FormInputRange = styled(FormInput)`
+  --themeColor: ${({ color }) => color};
   -webkit-appearance: none;
   width: 100%;
   margin: 7.3px 0;
@@ -54,7 +55,7 @@ export const FormInputRange = styled(FormInput)`
     height: 11.4px;
     cursor: pointer;
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    background: #00bfff;
+    background: var(--themeColor);
     border-radius: 1.3px;
     border: 0.2px solid #010101;
   }
@@ -70,14 +71,14 @@ export const FormInputRange = styled(FormInput)`
     margin-top: -7.5px;
   }
   :focus::-webkit-slider-runnable-track {
-    background: #00bfff;
+    background: var(--themeColor);
   }
   ::-moz-range-track {
     width: 100%;
     height: 11.4px;
     cursor: pointer;
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    background: #00bfff;
+    background: var(--themeColor);
     border-radius: 1.3px;
     border: 0.2px solid #010101;
   }
@@ -105,7 +106,7 @@ export const FormInputRange = styled(FormInput)`
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   }
   ::-ms-fill-upper {
-    background: #00bfff;
+    background: var(--themeColor);
     border: 0.2px solid #010101;
     border-radius: 2.6px;
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
@@ -121,10 +122,10 @@ export const FormInputRange = styled(FormInput)`
     height: 11.4px;
   }
   :focus::-ms-fill-lower {
-    background: #00bfff;
+    background: var(--themeColor);
   }
   :focus::-ms-fill-upper {
-    background: #00bfff;
+    background: var(--themeColor);
   }
 `
 

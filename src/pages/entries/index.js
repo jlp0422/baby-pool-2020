@@ -17,13 +17,7 @@ const Button = styled(RawButton)`
 `
 
 const EntryContainer = styled.div`
-margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(2, 48%);
-  grid-gap: 4%;
-  @media screen and (max-width: 640px) {
-    display: block;
-  }
+  margin-top: 20px;
 `
 
 const Entries = () => {
@@ -86,9 +80,9 @@ const Entries = () => {
       </div>
       {isLoading && <Loading />}
       <EntryContainer>
-      {entries.sort(compareFunc).map(entry => (
-        <Entry entry={entry} key={entry._id} />
-      ))}
+        {entries.sort(compareFunc).map(entry => (
+          <Entry entry={entry} key={entry._id} />
+        ))}
       </EntryContainer>
     </Layout>
   )

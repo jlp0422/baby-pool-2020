@@ -11,6 +11,7 @@ import {
   isStatusError,
   isStatusPending,
   isStatusSuccess,
+  getFormColor,
   STATUSES
 } from '../../utils'
 
@@ -18,6 +19,14 @@ const ErrorCopy = styled(P)`
   color: red;
   font-weight: bold;
   font-size: ${props => props.size || '1.6rem'};
+`
+
+const FormContainer = styled.div`
+  background-color: white;
+  padding: 2rem;
+  margin-top: 2rem;
+  border-radius: 4px;
+  border: 2px solid ${props => props.formColor};
 `
 
 const INITIAL_STATE = {
@@ -128,20 +137,21 @@ const CreateEntry = ({ location }) => {
         handleSubmit={handleSubmit}
         updateFieldValue={updateFieldValue}
         state={state}
+        formColor={getFormColor(state)}
       />
     )
   }
 
   const renderFormErrors = errors =>
-    errors.map(({ field, copy }) => (
-      <ErrorCopy key={field}>{copy}</ErrorCopy>
-    ))
+    errors.map(({ field, copy }) => <ErrorCopy key={field}>{copy}</ErrorCopy>)
 
   return (
     <Layout>
       <H1>Guess the baby's birthday, gender, and weight!</H1>
-      {renderFormErrors(state.errors)}
-      {renderForm()}
+      <FormContainer formColor={getFormColor(state)}>
+        {renderFormErrors(state.errors)}
+        {renderForm()}
+      </FormContainer>
     </Layout>
   )
 }

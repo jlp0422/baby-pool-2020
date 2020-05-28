@@ -22,7 +22,7 @@ const getInput = type => {
   }
 }
 
-const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
+const EntryForm = ({ handleSubmit, state, formColor, updateFieldValue }) => {
   const createFormField = ({
     label,
     name,
@@ -39,6 +39,7 @@ const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
           name={name}
           value={state[name]}
           {...options}
+          color={formColor}
           placeholder={placeholder}
           onChange={updateFieldValue(name)}
         />
@@ -92,7 +93,9 @@ const EntryForm = ({ handleSubmit, state, updateFieldValue }) => {
         })}
         <p>{calculateWeight(state.weight)}</p>
       </FormContent>
-      <FormButton type='submit'>Submit!</FormButton>
+      <FormButton color={formColor} type='submit'>
+        Submit!
+      </FormButton>
     </Form>
   )
 }

@@ -7,8 +7,8 @@ export const Button = styled.button`
   font-size: 1.5rem;
   line-height: 2rem;
   padding: 0.5rem;
-  background: #00bfff;
-  border: 1px solid #00bfff;
+  background: ${({ color = '#00bfff' }) => color};
+  border: 1px solid ${({ color = '#00bfff'}) => color};
   color: #fff;
   font-weight: bold;
   width: 125px;
@@ -19,7 +19,7 @@ export const H1 = styled.h1`
   text-transform: lowercase;
   font-family: 'A Little Mixed Up';
   color: #00bfff;
-  font-size: 4.4rem;
+  font-size: ${({ hero }) => (hero ? '5.4rem' : ' 4.4rem')};
   text-align: center;
   @media screen and (max-width: 640px) {
     font-size: 3.4rem;
@@ -36,10 +36,17 @@ export const P = styled.p`
 `
 
 export const StyledLink = styled(Link)`
-  text-decoration: underline;
+  text-decoration: none;
   font-size: 1.8rem;
   font-weight: bold;
-  color: #00bfff;
+  color: white;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  line-height: 2rem;
+  padding: 1rem;
+  background: pink;
+  border: 1px solid pink;
+  box-shadow: 1px 2px 5px #888888;
 `
 
 export const LinkContainer = styled.div`

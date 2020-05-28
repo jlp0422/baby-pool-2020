@@ -1,8 +1,13 @@
 export const calculateWeight = oz => {
+  const { pounds, ounces } = getWeight(oz)
+  return `${pounds} pounds, ${ounces} ounces`
+}
+
+export const getWeight = oz => {
   const OZ_PER_LB = 16
   const pounds = Math.floor(oz / OZ_PER_LB)
   const ounces = oz % OZ_PER_LB
-  return `${pounds} pounds, ${ounces} ounces`
+  return { pounds, ounces }
 }
 
 export const formatField = field => field.replace(/[A-Z]/, ' $&').toUpperCase()
@@ -40,4 +45,17 @@ export const flipSort = currentSort => {
   const property = currentSort.slice(1)
   const newDir = isAscending(direction) ? '-' : '+'
   return `${newDir}${property}`
+}
+
+export const isMale = gender => gender === 'MALE'
+export const isFemale = gender => gender === 'FEMALE'
+
+export const getFormColor = state => {
+  if (isMale(state.gender)) {
+    return '#00bfff'
+  }
+  if (isFemale(state.gender)) {
+    return '#ffc0cb'
+  }
+  return '#a8f6c5'
 }
