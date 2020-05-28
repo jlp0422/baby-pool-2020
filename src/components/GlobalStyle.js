@@ -14,22 +14,6 @@ export default () => {
           margin-top: 1rem;
         }
 
-        @font-face {
-          font-family: 'A Little Mixed Up';
-          src: url('../fonts/mixedUp/ALittleMixedUp.woff2') format('woff2'),
-            url('../fonts/mixedUp/ALittleMixedUp.woff') format('woff');
-          font-weight: normal;
-          font-style: normal;
-        }
-
-        @font-face {
-          font-family: 'Chock A Block NF';
-          src: url('../fonts/chockABlock/ChockABlockNF.woff2') format('woff2'),
-            url('../fonts/chockABlock/ChockABlockNF.woff') format('woff');
-          font-weight: normal;
-          font-style: normal;
-        }
-
         html,
         body {
           background-image: url(${background});

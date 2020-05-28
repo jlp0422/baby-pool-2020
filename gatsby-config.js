@@ -9,6 +9,15 @@ module.exports = {
       options: {
         path: `${__dirname}/src/images/`
       }
+    },
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        custom: {
+          families: ['A Little Mixed Up, Chock A Block NF'],
+          urls: ['/fonts/fonts.css']
+        }
+      }
     }
   ]
 }
