@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'A Little Mixed Up';
+  src: url('ALittleMixedUp.woff2') format('woff2'),
+    url('ALittleMixedUp.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Chock A Block NF';
+  src: url('ChockABlockNF.woff2') format('woff2'),
+    url('ChockABlockNF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
