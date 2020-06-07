@@ -1,6 +1,6 @@
 import { css, Global } from '@emotion/core'
-import background from '../backgrounds/background.jpg'
 import React from 'react'
+import background from '../backgrounds/background.jpg'
 
 export default () => {
   return (
@@ -16,11 +16,15 @@ export default () => {
 
         html,
         body {
-          background-image: url(${background});
-          background-repeat: repeat;
-          background-attachment: fixed;
+          background: url(${background}) repeat-y center center fixed;
           background-color: rgba(255, 255, 255, 0.6);
           background-blend-mode: lighten;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+          height: 100vh;
+          overflow: scroll;
           margin: 0;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
             Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
@@ -32,6 +36,7 @@ export default () => {
             margin-top: 0;
           }
         }
+
         h1,
         h2,
         h3,
